@@ -1,3 +1,6 @@
+/* ===============================
+   GLOBAL RESET
+================================ */
 * {
   margin: 0;
   padding: 0;
@@ -10,6 +13,9 @@ body {
   color: #f2f2f2;
 }
 
+/* ===============================
+   NAVBAR
+================================ */
 .nav {
   display: flex;
   justify-content: space-between;
@@ -24,12 +30,15 @@ body {
 
 .hamburger-btn {
   background: none;
-  color: #fff;
   border: none;
   font-size: 2rem;
+  color: #fff;
   cursor: pointer;
 }
 
+/* ===============================
+   FILTERS
+================================ */
 .filters {
   display: flex;
   justify-content: space-between;
@@ -67,6 +76,9 @@ body {
   cursor: pointer;
 }
 
+/* ===============================
+   SUMMARY
+================================ */
 .summary {
   display: flex;
   justify-content: space-around;
@@ -77,13 +89,9 @@ body {
   background-color: #3d3c42;
   padding: 1rem;
   border-radius: 10px;
-  border: #f48c8c solid 1px;
+  border: 1px solid #f48c8c;
   width: 31%;
   text-align: center;
-}
-
-.card h3 {
-  margin-bottom: 0.5rem;
 }
 
 .amount {
@@ -91,6 +99,9 @@ body {
   font-weight: bold;
 }
 
+/* ===============================
+   MAIN CONTENT
+================================ */
 .main-content {
   display: flex;
   justify-content: space-between;
@@ -106,17 +117,13 @@ body {
   width: 48%;
 }
 
+/* ===============================
+   RECORDS
+================================ */
 .records-header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
-}
-
-.records-header input {
-  width: 60%;
-  padding: 0.4rem;
-  border: none;
-  border-radius: 4px;
 }
 
 .search-bar {
@@ -125,20 +132,15 @@ body {
   border: none;
   padding: 0.4rem 1rem;
   border-radius: 6px;
+  width: 60%;
 }
 
 .add-btn {
   background-color: #f48c8c;
-  color: #2b2a2f;
   border: none;
   padding: 0.4rem 1rem;
   border-radius: 6px;
   cursor: pointer;
-}
-
-.record-list h4 {
-  color: #ccc;
-  margin: 0.7rem 0 0.3rem;
 }
 
 .record {
@@ -158,10 +160,9 @@ body {
   color: #ff5555;
 }
 
-.accounts h3 {
-  margin-bottom: 0.5rem;
-}
-
+/* ===============================
+   ACCOUNTS
+================================ */
 .account {
   display: flex;
   justify-content: space-between;
@@ -174,22 +175,16 @@ body {
 .add-account {
   width: 100%;
   background-color: #f48c8c;
-  color: #2b2a2f;
   border: none;
   padding: 0.6rem;
   border-radius: 6px;
   cursor: pointer;
   margin-top: 0.5rem;
 }
-.add-account:hover {
-  background-color: #ff7777;
-}
-.add-account a {
-  text-decoration: none;
-  color: #2b2a2f;
-  font-weight: 600;
-}
 
+/* ===============================
+   CHARTS
+================================ */
 .charts {
   display: flex;
   justify-content: space-between;
@@ -204,132 +199,62 @@ body {
   width: 48%;
 }
 
-.chart h3 {
-  margin-bottom: 0.8rem;
-}
-
-.chart ul {
-  list-style: none;
-}
-
-.chart li {
-  margin-bottom: 0.4rem;
-  color: #ccc;
-}
-.inc-btn {
+/* ===============================
+   BUTTON STYLES
+================================ */
+.inc-btn,
+.acc-btn,
+.math-btn {
   background: #3d3c42;
   color: #fff;
-  padding: 10px 16px;
-  border-radius: 10px;
   border: none;
-  margin: 5px 4px;
+  border-radius: 10px;
   cursor: pointer;
+}
+
+.inc-btn,
+.acc-btn {
+  padding: 10px 16px;
+  margin: 4px;
 }
 
 .acc-btn {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #3d3c42;
-  padding: 10px 16px;
-  border-radius: 10px;
-  color: #fff;
-  border: none;
-  margin: 6px 4px;
-  cursor: pointer;
-}
-
-.display-num {
-  width: 100%;
-  padding: 14px;
-  border-radius: 10px;
-  border: none;
-  margin: 10px 0;
-  font-size: 24px;
-  text-align: right;
-  background: #3d3c42;
-  color: #fff;
-}
-.budget-notes {
-  width: 100%;
-  height: 90px;
-  border-radius: 10px;
-  padding: 10px;
-  border: none;
-  margin: 10px 0;
-  background: #3d3c42;
-  color: #fff;
 }
 
 .math-btn {
   padding: 18px;
-  border-radius: 10px;
-  background: #3d3c42;
-  border: none;
   font-size: 18px;
-  color: #fff;
-  cursor: pointer;
 }
+
+.inc-btn:hover,
+.acc-btn:hover,
 .math-btn:hover {
   background-color: #4a4950;
 }
-.acc-btn:hover {
-  background-color: #4a4950;
-}
-.inc-btn:hover {
-  background-color: #4a4950;
-}
-.save-btn:hover {
-  background-color: #ff7777;
-}
-.calc-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  margin-top: 10px;
-}
 
-.cancel-btn,
-.save-btn {
-  padding: 10px 16px;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-right: 8px;
-}
-
-.cancel-btn {
-  background: #3b3a40;
-  color: #ff8c8c;
-}
-.cancel-btn:hover {
-  background: #4a4950;
-  color: #ffb3b3;
-  transition: 0.25s ease;
-}
-
-.save-btn {
-  background: #ff8c8c;
-  color: #2b2b2f;
-}
+/* ===============================
+   OVERLAY BASE (JS CONTROLLED)
+================================ */
 .overlay {
-  display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   background: rgba(0, 0, 0, 0.65);
+  display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 1000;
 }
 
-#addRecordOverlay:target {
-  display: flex;
+.overlay[hidden] {
+  display: none;
 }
 
+/* ===============================
+   ADD RECORD OVERLAY
+================================ */
 .add-record-box {
   width: 90%;
   max-width: 450px;
@@ -339,211 +264,104 @@ body {
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
   max-height: 90vh;
   overflow-y: auto;
-}
-.row {
+
   display: flex;
-  justify-content: space-between;
-  margin: 6px 0;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.row .math-btn {
-  flex: 1;
-  margin: 4px;
-}
-
-/* CATEGORY OVERLAY BACKGROUND */
-#categoriesOverlay.hidden {
-  display: none;
-}
-
-#categoriesOverlay:target {
+.record-type-buttons,
+.account-category-buttons {
   display: flex;
-}
-.category-box {
-  background-color: #2b2a2f;
-  padding: 20px;
-  border-radius: 15px;
-  width: 92%;
-  max-width: 700px;
-  color: ;
-  overflow-y: auto;
-  max-height: 90vh;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-#categoriesOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.65);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-/* CATEGORY BOX */
-
-/* TABLE TEXT + LAYOUT */
-.category-box table {
-  width: 100%;
-  color: white;
-  font-size: 18px;
-}
-
-.category-box td {
-  padding: 10px 5px;
-}
-
-/* BUDGET BUTTON */
-.budget-btn {
-  padding: 8px 12px;
-  background-color: #f48c8c;
+.budget-notes {
+  background: #3d3c42;
   border: none;
   border-radius: 10px;
-  cursor: pointer;
-  transition: 0.2s ease-in-out;
+  padding: 30px;
+  color: #fff;
 }
 
-.budget-btn:hover {
-  background-color: #ff7777;
+.display-num {
+  background: #3d3c42;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 24px;
+  text-align: right;
+  color: #fff;
 }
 
-/* Fix the link inside */
-.budget-btn a {
-  color: #2b2a2f;
-  text-decoration: none;
-  font-weight: 600;
-}
-.account-container h1 {
-  margin-bottom: 15px;
-  color: #f48c8c;
-  font-size: 1.8rem;
-  text-align: center;
+/* Calculator */
+.calc-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
 }
 
-/* Close Button Hover */
-.cancel-btn:hover {
-  background-color: #4a4950;
-}
-
+/* ===============================
+   CATEGORIES OVERLAY
+================================ */
 .category-box {
   width: 95%;
-  max-width: 600px;
-  background: #2b2a2f; /* same dark theme */
+  max-width: 700px;
+  background: #2b2a2f;
   padding: 20px;
   border-radius: 16px;
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
   max-height: 90vh;
   overflow-y: auto;
-  color: white;
 }
+
 .category-page-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
-.account-container table td img {
+
+.account-container h1 {
+  text-align: center;
+  color: #f48c8c;
+  margin-bottom: 15px;
+}
+
+/* Category table */
+.category-box table {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+}
+
+.category-box td {
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.category-box img {
   width: 32px;
   height: 32px;
 }
 
-.account-container table td {
-  vertical-align: middle;
-  padding: 8px;
-  color: white;
-}
-
+/* ===============================
+   RESPONSIVE
+================================ */
 @media (max-width: 600px) {
-  .category-page-container {
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  .main-content,
+  .charts {
+    flex-direction: column;
   }
 
-  .account-container {
+  .records,
+  .accounts,
+  .chart {
     width: 100%;
   }
 
-  .add-div {
-    width: 100%;
-  }
-}
-
-/* category tablet*/
-@media (min-width: 600px) and (max-width: 900px) {
-  .account-container h1 {
-    font-size: 1.6rem;
-  }
-
-  .category-page-container {
-    padding: 15px;
-  }
-
-  table td {
-    font-size: 1rem;
-  }
-}
-
-/* LARGE SCREENS (DESKTOP) for category*/
-@media (min-width: 1000px) {
-  .category-page-container {
-    padding: 10px;
-  }
-
-  .account-container {
-    padding: 15px;
-  }
-
-  .account-container h1 {
-    font-size: 1.4rem;
-  }
-
-  table td {
-    font-size: 0.9rem;
-    padding: 8px 8px 8px 10px;
-  }
-
-  table img {
-    width: 32px;
-    height: 32px;
-  }
-
-  .budget-btn {
-    padding: 6px;
-  }
-
-  .add-account {
-    width: 100%;
-  }
-}
-
-/* Phones calculator*/
-@media (max-width: 480px) {
-  .acc-btn {
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .inc-btn {
-    width: 100%;
-  }
-}
-
-/* Tablets calculator */
-@media (max-width: 768px) {
-  .calc-container {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (min-width: 769px) {
-  .acc-btn {
-    width: auto;
+  .record-type-buttons,
+  .account-category-buttons {
+    flex-direction: column;
   }
 }

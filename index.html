@@ -1,585 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-    <title>pennyWise</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="static/css/styles.css">
+  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"> -->
+  <title>PennyWise</title>
 </head>
 <body>
-    <header class="nav">
-        <h1 class="logo">PennyWise</h1>
-        <button class="hamburger-btn"><a href="#categoriesOverlay">☰</a></button>
-    </header>
-    <main class="container">
-        <section class="filters">
-            <div class="tabs">
-                <button >Day</button>
-                <button class="active">1 Month</button>
-                <button>3 Months</button>
-            </div>
+  <!-- NAVIGATION -->
+  <header class="nav">
+    <h1 class="logo">PennyWise</h1>
+    <button class="hamburger-btn" data-toggle="categoriesOverlay">☰</button>
+  </header>
 
-            <div class="time-picker">
-                <button>&lt;</button>
-                <span>October, 2025</span>
-                <button>&gt;</button>
-            </div>
-        </section>
+  <!-- MAIN CONTAINER -->
+  <main class="container">
 
-        <section class="summary">
-            <div class="card">
-                <h3>Income</h3>
-                <p class="amount">$0</p>
-                <span>+33% over last month</span>
-            </div>
-            <div class="card">
-                <h3>Expense</h3>
-                <p class="amount">$0</p>
-                <span>-33% under last month</span>
-            </div>
-            <div class="card">
-                <h3>Total</h3>
-                <p class="amount">$0</p>
-                <span>0% over last month</span>
-            </div>
-        </section>
+    <!-- FILTERS -->
+    <section class="filters">
+      <div class="tabs">
+        <button data-filter="day">Day</button>
+        <button class="active" data-filter="1month">1 Month</button>
+        <button data-filter="3months">3 Months</button>
+      </div>
 
-        <section class="main-content">
-            <div class="records">
-                <div class="records-header">
-                    <input type="text" class="search-bar" placeholder="Search...">
-                    <button class="add-btn"><a href="#addRecordOverlay">+ Add New Record</a></button>
-                </div>
-                <div class="record-list">
-                    <h4>Oct 23, Thursday</h4>
-                    <div class="record income">
-                        <span>🎓 Education</span>
-                        <span>-Br 150.00</span>
-                    </div>
-                    <div class="record expense">
-                        <span>🎓 Education</span>
-                        <span>-Br 150.00</span>
-                    </div>
-                    
-                    <h4>Oct 20, Monday</h4>
-                    <div class="record income">
-                        <span>💰 Refunds</span>
-                        <span>+Br 300.00</span>
-                    </div>
-                    <div class="record expense">
-                        <span>🎓 Education</span>
-                        <span>-Br 150.00</span>
-                    </div>
-                </div>
-            </div>
+      <div class="time-picker">
+        <button data-action="prev-month">&lt;</button>
+        <span id="currentMonth">October, 2025</span>
+        <button data-action="next-month">&gt;</button>
+      </div>
+    </section>
 
-            <div class="accounts">
-                <h3>Accounts</h3>
-                <div class="account">
-                    <span>💳 Card</span>
-                    <span>Br 700.00</span>
-                </div>
-                <div class="account">
-                    <span>💵 Cash</span>
-                    <span>Br 700.00</span>
-                </div>
-                <div class="account">
-                    <span>🏦 Savings</span>
-                    <span>Br 700.00</span>
-                </div>
-                <button class="add-account"><a href="overlays/add_account.html">+ Add New Account</a></button>
-            </div>
-        </section>
+    <!-- SUMMARY CARDS -->
+    <section class="summary">
+      <div class="card">
+        <h3>Income</h3>
+        <p class="amount" id="incomeAmount">$0</p>
+        <span id="incomeChange">+33% over last month</span>
+      </div>
+      <div class="card">
+        <h3>Expense</h3>
+        <p class="amount" id="expenseAmount">$0</p>
+        <span id="expenseChange">-33% under last month</span>
+      </div>
+      <div class="card">
+        <h3>Total</h3>
+        <p class="amount" id="totalAmount">$0</p>
+        <span id="totalChange">0% over last month</span>
+      </div>
+    </section>
 
-        <section class="charts">
-            <div class="chart">
-                <h3>Expense Breakdown</h3>
-                <ul type="none">
-                    <li>Education - 40%</li>
-                    <li>Electronics - 30%</li>
-                    <li>Entertainment - 20%</li>
-                    <li>Food - 5%</li>
-                    <li>Home - 5%</li>
-                </ul>
-            </div>
-            <div class="chart">
-                <h3>Income Breakdown</h3>
-                <ul type="none">
-                    <li>Rental +700.00</li>
-                    <li>Salary +700.00</li>
-                    <li>Sale +700.00</li>
-                </ul>
-            </div>
-        </section>
-        <div id="addRecordOverlay" class="overlay">
-        <div class="add-record-box">
-       <button id="closeCategories" class="cancel-btn">
-    <a href="#" style="color:white; text-decoration:none ;">× CLOSE</a>
-</button>
+    <!-- MAIN CONTENT -->
+    <section class="main-content">
 
-          <button class="save-btn">✔︎ SAVE</button>
+      <!-- RECORDS -->
+      <div class="records">
+        <div class="records-header">
+          <input type="text" id="searchBar" class="search-bar" placeholder="Search...">
+          <button class="btn add-btn" data-toggle="addRecordOverlay">+ Add New Record</button>
+        </div>
+        <ul id="recordList" class="record-list">
+          <!-- JS will populate records -->
+        </ul>
+      </div>
 
-          <div>
-            <button class="inc-btn">Income</button>
-            <button class="inc-btn">Expense</button>
-            <button class="inc-btn">Transfer</button>
+      <!-- ACCOUNTS -->
+      <div class="accounts">
+        <h3>Accounts</h3>
+        <ul id="accountsList">
+          <!-- JS will populate accounts -->
+        </ul>
+        <button class="btn add-account" data-action="open-add-account">+ Add New Account</button>
+      </div>
+
+    </section>
+
+    <!-- CHARTS -->
+    <section class="charts">
+      <div class="chart">
+        <h3>Expense Breakdown</h3>
+        <ul id="expenseBreakdown">
+          <!-- JS will populate -->
+        </ul>
+      </div>
+      <div class="chart">
+        <h3>Income Breakdown</h3>
+        <ul id="incomeBreakdown">
+          <!-- JS will populate -->
+        </ul>
+      </div>
+    </section>
+
+    <!-- ADD RECORD OVERLAY -->
+    <div id="addRecordOverlay" class="overlay" hidden>
+      <div class="add-record-box">
+        <button class="btn cancel-btn" data-close>× CLOSE</button>
+        <button class="btn save-btn" data-action="save-record">✔︎ SAVE</button>
+
+        <div class="record-type-buttons">
+          <button class="btn inc-btn" data-type="income">Income</button>
+          <button class="btn inc-btn" data-type="expense">Expense</button>
+          <button class="btn inc-btn" data-type="transfer">Transfer</button>
+        </div>
+
+        <div class="account-category-buttons">
+          <button class="btn acc-btn" data-action="open-accounts"><img width="30" src="NewIcons/Wallet.png"> Account</button>
+          <button class="btn acc-btn" data-action="open-categories"><img width="30" src="NewIcons/category.jpg"> Category</button>
+        </div>
+
+        <textarea class="budget-notes" placeholder="Add notes"></textarea>
+        <input type="number" class="display-num" placeholder="0">
+
+        <div class="calc-container">
+          <button class="btn math-btn">C</button>
+          <button class="btn math-btn">÷</button>
+          <button class="btn math-btn">7</button>
+          <button class="btn math-btn">8</button>
+          <button class="btn math-btn">9</button>
+          <button class="btn math-btn">×</button>
+          <button class="btn math-btn">4</button>
+          <button class="btn math-btn">5</button>
+          <button class="btn math-btn">6</button>
+          <button class="btn math-btn">-</button>
+          <button class="btn math-btn">1</button>
+          <button class="btn math-btn">2</button>
+          <button class="btn math-btn">3</button>
+          <button class="btn math-btn">+</button>
+          <button class="btn math-btn">0</button>
+          <button class="btn math-btn">.</button>
+          <button class="btn math-btn">=</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORIES OVERLAY -->
+    <div id="categoriesOverlay" class="overlay" hidden>
+      <div class="category-box">
+        <button class="btn cancel-btn" data-close>× CLOSE</button>
+        <div class="category-page-container">
+          <div class="account-container" id="incomeCategories">
+            <h1>Income Categories</h1>
+            <ul class="category-list">
+              <!-- JS will populate -->
+            </ul>
           </div>
 
-          <div>
-            <button class="acc-btn">
-              <img width="30" src="NewIcons/Wallet.png" /> Account
-            </button>
-
-            <button class="acc-btn">
-              <img width="30" src="NewIcons/category.jpg" /> Category
-            </button>
+          <div class="account-container" id="expenseCategories">
+            <h1>Expense Categories</h1>
+            <ul class="category-list">
+              <!-- JS will populate -->
+            </ul>
           </div>
 
-          <textarea class="budget-notes" placeholder="Add notes"></textarea>
-
-          <input type="number" class="display-num" placeholder="0" />
-
-          <button class="math-btn">C</button>
-
-          <div class="row">
-            <button class="math-btn">÷</button>
-            <button class="math-btn">7</button>
-            <button class="math-btn">8</button>
-            <button class="math-btn">9</button>
-          </div>
-
-          <div class="row">
-            <button class="math-btn">×</button>
-            <button class="math-btn">4</button>
-            <button class="math-btn">5</button>
-            <button class="math-btn">6</button>
-          </div>
-
-          <div class="row">
-            <button class="math-btn">-</button>
-            <button class="math-btn">1</button>
-            <button class="math-btn">2</button>
-            <button class="math-btn">3</button>
-          </div>
-
-          <div class="row">
-            <button class="math-btn">+</button>
-            <button class="math-btn">0</button>
-            <button class="math-btn">.</button>
-            <button class="math-btn">=</button>
+          <div class="add-div">
+            <button class="btn add-account" data-action="open-add-category">ADD NEW CATEGORY</button>
           </div>
         </div>
       </div>
+    </div>
 
-            <!-- CATEGORY OVERLAY (HIDDEN) -->
-      <div id="categoriesOverlay" class="overlay hidden">
-        <div class="category-box">
-          <button id="closeCategories" class="cancel-btn">
-            <a href="#" style="color: white; text-decoration: none">× CLOSE</a>
-          </button>
-          <div class="category-page-container">
-            <div class="account-container">
-              <h1>Income Categories</h1>
-              <table cellspacing="0" cellpadding="5">
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/IncomeCategories/award.png"
-                    />
-                  </td>
-                  <td>Awards</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/IncomeCategories/coupon.png"
-                    />
-                  </td>
-                  <td>Coupons</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/IncomeCategories/grant.png"
-                    />
-                  </td>
-                  <td>Grants</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/IncomeCategories/lottery.png"
-                    />
-                  </td>
-                  <td>Lottery</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/IncomeCategories/refund.png"
-                    />
-                  </td>
-                  <td>Refunds</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/IncomeCategories/rental.png"
-                    />
-                  </td>
-                  <td>Rental</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/IncomeCategories/wallet.png"
-                    />
-                  </td>
-                  <td>Salary</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/IncomeCategories/sale.png"
-                    />
-                  </td>
-                  <td>Sale</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <div class="account-container">
-              <h1>Expense Categories</h1>
-              <table cellspacing="0" cellpadding="5">
-                <tr>
-                  <td>
-                    <img width="40"height="40" src="NewIcons/ExportCategories/baby.png"/>
-                  </td>
-                  <td>Baby</td>
-                  <td> <button class="budget-btn"> <a href="overlays/set_budget.html">Set Budget</a></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img width="40" height="40"src="NewIcons/ExportCategories/beauty.png"
-                    />
-                  </td>
-                  <td>Beauty</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img width="40"
-                      height="40"
-                      src="NewIcons/ExportCategories/Bill.png"
-                    />
-                  </td>
-                  <td>Bills</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/ExportCategories/car.png"
-                    />
-                  </td>
-                  <td>Car</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/ExportCategories/clothing.png"
-                    />
-                  </td>
-                  <td>Clothing</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/ExportCategories/education.png"
-                    />
-                  </td>
-                  <td>Education</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/ExportCategories/electronics.png"
-                    />
-                  </td>
-                  <td>Electronics</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/ExportCategories/Entertainment.png"
-                    />
-                  </td>
-                  <td>Entertainment</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/ExportCategories/Food.png"
-                    />
-                  </td>
-                  <td>Food</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/ExportCategories/Health.png"
-                    />
-                  </td>
-                  <td>Health</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/ExportCategories/home.png"
-                    />
-                  </td>
-                  <td>Home</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/ExportCategories/Insurance.png"
-                    />
-                  </td>
-                  <td>Insurance</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/ExportCategories/Shopping.png"
-                    />
-                  </td>
-                  <td>Shopping</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/ExportCategories/social.png"
-                    />
-                  </td>
-                  <td>Social</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/ExportCategories/sport.png"
-                    />
-                  </td>
-                  <td>Sport</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/ExportCategories/Tax.png"
-                    />
-                  </td>
-                  <td>Tax</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/ExportCategories/telephone.png"
-                    />
-                  </td>
-                  <td>Telephone</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      width="40"
-                      height="40"
-                      src="NewIcons/ExportCategories/Transportation.png"
-                    />
-                  </td>
-                  <td>Transportation</td>
-                  <td>
-                    <button class="budget-btn">
-                      <a href="overlays/set_budget.html">Set Budget</a>
-                    </button>
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <div class="add-div">
-              <button class="add-account">
-                <a class="anchor-style" href="overlays/add_category.html"
-                  >ADD NEW CATEGORY</a
-                >
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
+  </main>
+  <script src="static/js/app.js"></script>
+  <script>
+    // Overlay toggle logic
+    const overlayButtons = document.querySelectorAll('[data-toggle]');
+    const closeButtons = document.querySelectorAll('[data-close]');
+
+    overlayButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const overlay = document.getElementById(btn.dataset.toggle);
+        if (overlay) overlay.hidden = false;
+      });
+    });
+
+    closeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.closest('.overlay').hidden = true;
+      });
+    });
+  </script>
 </body>
 </html>
