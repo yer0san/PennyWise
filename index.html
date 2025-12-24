@@ -1,186 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="static/css/styles.css">
-  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"> -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PennyWise</title>
+  <link rel="stylesheet" href="static/css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
-  <!-- NAVIGATION -->
   <header class="nav">
     <h1 class="logo">PennyWise</h1>
-    <button class="hamburger-btn" data-toggle="categoriesOverlay">☰</button>
+    <button class="hamburger-btn" data-toggle="addCategoryOverlay">☰</button>
   </header>
 
-  <!-- MAIN CONTAINER -->
   <main class="container">
 
-    <!-- FILTERS -->
-    <section class="filters">
-      <div class="tabs">
-        <button data-filter="day">Day</button>
-        <button class="active" data-filter="1month">1 Month</button>
-        <button data-filter="3months">3 Months</button>
-      </div>
-
-      <div class="time-picker">
-        <button data-action="prev-month">&lt;</button>
-        <span id="currentMonth">October, 2025</span>
-        <button data-action="next-month">&gt;</button>
-      </div>
-    </section>
-
-    <!-- SUMMARY CARDS -->
     <section class="summary">
       <div class="card">
         <h3>Income</h3>
         <p class="amount" id="incomeAmount">$0</p>
-        <span id="incomeChange">+33% over last month</span>
       </div>
+
       <div class="card">
         <h3>Expense</h3>
         <p class="amount" id="expenseAmount">$0</p>
-        <span id="expenseChange">-33% under last month</span>
       </div>
+
       <div class="card">
         <h3>Total</h3>
         <p class="amount" id="totalAmount">$0</p>
-        <span id="totalChange">0% over last month</span>
       </div>
     </section>
 
     <!-- MAIN CONTENT -->
     <section class="main-content">
 
-      <!-- RECORDS -->
+      <!-- ===== RECORDS ===== -->
       <div class="records">
         <div class="records-header">
-          <input type="text" id="searchBar" class="search-bar" placeholder="Search...">
-          <button class="btn add-btn" data-toggle="addRecordOverlay">+ Add New Record</button>
+            <div class="record-filter">
+            <label for="recordTypeFilter">Show:</label>
+            <select id="recordTypeFilter">
+                <option value="all">All</option>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+                <option value="transfer">Transfer</option>
+            </select>
+            </div>
+          <button class="btn add-btn" data-toggle="addRecordOverlay">
+            + Add Record
+          </button>
         </div>
+
         <ul id="recordList" class="record-list">
-          <!-- JS will populate records -->
         </ul>
       </div>
 
-      <!-- ACCOUNTS -->
+      <!-- ===== ACCOUNTS ===== -->
       <div class="accounts">
         <h3>Accounts</h3>
-        <ul id="accountsList">
-          <!-- JS will populate accounts -->
-        </ul>
-        <button class="btn add-account" data-action="open-add-account">+ Add New Account</button>
+        <ul id="accountsList"></ul>
+
+        <button
+          class="btn add-account"
+          data-toggle="addAccountOverlay"
+        >
+          + Add New Account
+        </button>
       </div>
 
     </section>
-
-    <!-- CHARTS -->
-    <section class="charts">
-      <div class="chart">
-        <h3>Expense Breakdown</h3>
-        <ul id="expenseBreakdown">
-          <!-- JS will populate -->
-        </ul>
-      </div>
-      <div class="chart">
-        <h3>Income Breakdown</h3>
-        <ul id="incomeBreakdown">
-          <!-- JS will populate -->
-        </ul>
-      </div>
-    </section>
-
-    <!-- ADD RECORD OVERLAY -->
-    <div id="addRecordOverlay" class="overlay" hidden>
-      <div class="add-record-box">
-        <button class="btn cancel-btn" data-close>× CLOSE</button>
-        <button class="btn save-btn" data-action="save-record">✔︎ SAVE</button>
-
-        <div class="record-type-buttons">
-          <button class="btn inc-btn" data-type="income">Income</button>
-          <button class="btn inc-btn" data-type="expense">Expense</button>
-          <button class="btn inc-btn" data-type="transfer">Transfer</button>
-        </div>
-
-        <div class="account-category-buttons">
-          <button class="btn acc-btn" data-action="open-accounts"><img width="30" src="NewIcons/Wallet.png"> Account</button>
-          <button class="btn acc-btn" data-action="open-categories"><img width="30" src="NewIcons/category.jpg"> Category</button>
-        </div>
-
-        <textarea class="budget-notes" placeholder="Add notes"></textarea>
-        <input type="number" class="display-num" placeholder="0">
-
-        <div class="calc-container">
-          <button class="btn math-btn">C</button>
-          <button class="btn math-btn">÷</button>
-          <button class="btn math-btn">7</button>
-          <button class="btn math-btn">8</button>
-          <button class="btn math-btn">9</button>
-          <button class="btn math-btn">×</button>
-          <button class="btn math-btn">4</button>
-          <button class="btn math-btn">5</button>
-          <button class="btn math-btn">6</button>
-          <button class="btn math-btn">-</button>
-          <button class="btn math-btn">1</button>
-          <button class="btn math-btn">2</button>
-          <button class="btn math-btn">3</button>
-          <button class="btn math-btn">+</button>
-          <button class="btn math-btn">0</button>
-          <button class="btn math-btn">.</button>
-          <button class="btn math-btn">=</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- CATEGORIES OVERLAY -->
-    <div id="categoriesOverlay" class="overlay" hidden>
-      <div class="category-box">
-        <button class="btn cancel-btn" data-close>× CLOSE</button>
-        <div class="category-page-container">
-          <div class="account-container" id="incomeCategories">
-            <h1>Income Categories</h1>
-            <ul class="category-list">
-              <!-- JS will populate -->
-            </ul>
-          </div>
-
-          <div class="account-container" id="expenseCategories">
-            <h1>Expense Categories</h1>
-            <ul class="category-list">
-              <!-- JS will populate -->
-            </ul>
-          </div>
-
-          <div class="add-div">
-            <button class="btn add-account" data-action="open-add-category">ADD NEW CATEGORY</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
   </main>
+
+  <!--  ADD RECORD OVERLAY -->
+  <div id="addRecordOverlay" class="overlay" hidden>
+    <div class="modal">
+
+      <button class="close-btn" data-close>×</button>
+
+      <!-- Record Type -->
+      <div class="mode-buttons">
+        <button data-mode="income">Income</button>
+        <button data-mode="expense">Expense</button>
+        <button data-mode="transfer">Transfer</button>
+      </div>
+
+      <!-- Account / Category -->
+      <div class="selection">
+        <button data-toggle="accountsOverlay">Select Account</button>
+        <button data-toggle="categoriesOverlay">Select Category</button>
+      </div>
+
+      <!-- Selection Summary -->
+      <div class="selection-summary">
+        <p>From: <span id="fromText">—</span></p>
+        <p>To / Category: <span id="toText">—</span></p>
+      </div>
+
+      <!-- Amount Input -->
+      <input type="text" class="display-num" placeholder="0"/>
+
+      <!-- Error -->
+      <p id="formError" class="error hidden"></p>
+
+      <!-- Calculator -->
+      <div class="calc">
+        <button data-key="1">1</button>
+        <button data-key="2">2</button>
+        <button data-key="3">3</button>
+        <button data-key="+">+</button>
+
+        <button data-key="4">4</button>
+        <button data-key="5">5</button>
+        <button data-key="6">6</button>
+        <button data-key="-">-</button>
+
+        <button data-key="7">7</button>
+        <button data-key="8">8</button>
+        <button data-key="9">9</button>
+        <button data-key="*">×</button>
+
+        <button data-action="clear">C</button>
+        <button data-key="0">0</button>
+        <button data-key=".">.</button>
+        <button data-action="calculate">=</button>
+      </div>
+
+      <!-- Save -->
+      <button class="btn save-btn" data-action="save-record">
+        Save Record
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ACCOUNTS OVERLAY -->
+  <div id="accountsOverlay" class="overlay" hidden>
+    <div class="modal">
+      <button class="close-btn" data-close>×</button>
+      <h3>Select Account</h3>
+      <ul id="accountOptions"></ul>
+    </div>
+  </div>
+
+  <!-- ADD ACCOUNT OVERLAY -->
+  <div id="addAccountOverlay" class="overlay" hidden>
+    <div class="modal">
+      <button class="close-btn" data-close>×</button>
+
+      <h3>Add New Account</h3>
+
+      <input
+        type="text"
+        id="accountNameInput"
+        placeholder="Account name"
+      />
+
+      <input
+        type="number"
+        id="accountBalanceInput"
+        placeholder="Initial balance"
+      />
+
+      <button class="btn save-btn" data-action="save-account">
+        Save Account
+      </button>
+    </div>
+  </div>
+
+  <!-- CATEGORIES OVERLAY -->
+  <div id="categoriesOverlay" class="overlay" hidden>
+    <div class="modal">
+      <button class="close-btn" data-close>×</button>
+      <h3>Select Category</h3>
+      <ul id="categoryOptions"></ul>
+    </div>
+  </div>
+
+  <!-- ADD CATEGORY OVERLAY -->
+    <div id="addCategoryOverlay" class="overlay" hidden>
+    <div class="modal">
+        <button class="close-btn" data-close>×</button>
+
+        <h3>Add New Category</h3>
+
+        <input
+        type="text"
+        id="categoryNameInput"
+        placeholder="Category name"
+        />
+
+        <div class="mode-buttons">
+        <button data-category-type="income">Income</button>
+        <button data-category-type="expense">Expense</button>
+        </div>
+
+        <button class="btn save-btn" data-action="save-category">
+        Save Category
+        </button>
+    </div>
+    </div>
+
+   <section class="charts">
+  <div class="chart1">
+    <h3>Expense Breakdown</h3>
+    <ul id="expenseBreakdown"></ul>
+    <canvas id="expenseChart"></canvas>
+  </div>
+
+  <div class="chart2">
+    <h3>Income Breakdown</h3>
+    <ul id="incomeBreakdown"></ul>
+    <canvas id="incomeChart"></canvas>
+  </div>
+</section>
+
   <script src="static/js/app.js"></script>
-  <script>
-    // Overlay toggle logic
-    const overlayButtons = document.querySelectorAll('[data-toggle]');
-    const closeButtons = document.querySelectorAll('[data-close]');
 
-    overlayButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const overlay = document.getElementById(btn.dataset.toggle);
-        if (overlay) overlay.hidden = false;
-      });
-    });
-
-    closeButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        btn.closest('.overlay').hidden = true;
-      });
-    });
-  </script>
 </body>
 </html>
