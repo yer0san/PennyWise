@@ -145,9 +145,24 @@ function addRecord(amount) {
     return;
   }
 
+  const fromm = state.accounts.find(a => a.id === fromAccount);
+  if (!fromm) {
+    setError("Source account not found");
+    return;
+  }
+
   if (mode === "transfer" && !toAccount) {
     setError("Select destination account");
     return;
+  }
+
+  // Validate sufficient funds before creating the record
+  if (mode === "expense") {
+    if (fromm.balance < amount) {
+      alert("You lack the funds!");
+      setError("Insufficient funds for expense");
+      return;
+    }
   }
 
   const record = {
